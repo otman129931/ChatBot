@@ -1,6 +1,7 @@
 import spacy 
 import nltk
 import string 
+import numpy as np
 from spacy.tokenizer import Tokenizer
 from nltk.stem.porter import *
 nlp = spacy.load('en_core_web_sm')
@@ -22,7 +23,15 @@ class NLP_helper:
         text_tokens=self.sentence_tokenzation(sentence)
         tokens_without_sw = [word for word in text_tokens if not word in all_stopwords]
         return tokens_without_sw
-
+    def sentence_vector(self, sentence, words):
+        sentence=[self.word_stema(word) for word in sentence ]
+        vect=np.zeros(len(words), dtype=np.float32)
+        for index,value in enumerate(words):
+            if value in sentence:
+                vect[index]=1.0
+        return vect
     
 if __name__ == '__main__':
     nlpH=NLP_helper()
+    
+
