@@ -31,7 +31,6 @@ class NLP_helper:
                 vect[index]=1.0
         return vect
     
-if __name__ == '__main__':
-    nlpH=NLP_helper()
+
     
 
